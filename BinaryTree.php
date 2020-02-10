@@ -15,6 +15,12 @@ class BinaryTree
 
 class BinaryTreeSearch
 {
+    /**
+     * 查找节点
+     * @param  $target
+     * @param string $target
+     * @return bool
+     */
     public static function contains($Tree, $target) {
         if (empty($Tree)) {
             return false;
@@ -31,6 +37,9 @@ class BinaryTreeSearch
         }
     }
 
+    /**
+     * 插入节点
+     */
     public static function insert($Tree, $target) {
         if (empty($Tree->left) && empty($Tree->element) && empty($Tree->right)) {
             $Tree = new BinaryTree;
@@ -50,6 +59,11 @@ class BinaryTreeSearch
         return $Tree;
     }
 
+    /**
+     * 查找数的最大值
+     * @param BinaryTreeSearch $Tree
+     * @return $Tree
+     */
     public static function findMax($Tree) {
         if (empty($Tree->right)) {
             return $Tree;
@@ -59,6 +73,11 @@ class BinaryTreeSearch
         return $Tree;
     }
 
+    /**
+     * 查找数的最小值
+     * @param BinaryTreeSearch $Tree
+     * @return $Tree
+     */
     public static function findMin($Tree) {
         if (empty($Tree->left)) {
             return $Tree;
@@ -66,6 +85,10 @@ class BinaryTreeSearch
             $Tree = BinaryTreeSearch::findMin($Tree->left);
         }
         return $Tree;
+    }
+
+    public function remove($Tree, $target) {
+
     }
 }
 
