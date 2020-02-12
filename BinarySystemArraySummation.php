@@ -1,6 +1,9 @@
 <?php
 class BinarySystemArraySummation
 {
+    /**
+     * @return array
+     */
     public function run() {
         $arrayA = [1];
         $arrayB = [1];
@@ -9,13 +12,17 @@ class BinarySystemArraySummation
         $arrayC = [];
         $countA = count($arrayA) - 1;
         $countB = count($arrayB) - 1;
+        // 计算最大的数组
+        $key = $countA > $countB ? 'countA' : 'countB';
         $this->output($arrayA);
         $this->output($arrayB);
-        echo base_convert(implode('', $arrayA), 2, 10) . '</br>';
-        echo base_convert(implode('', $arrayB), 2, 10) . '</br>';
+        $this->binarySystemPut($arrayA);
+        $this->binarySystemPut($arrayB);
+        // 计算进一之后的余数
         $deposit = 0;
-        while ($countA >= 0 || $countB >= 0) {
-            $sum = ($arrayB[$countB] ?? 0) + ($arrayA[$countA] ?? 0) + ($deposit ?? 0);
+        while ($$key >= 0) {
+            $sum = ($arrayB[$countB] ?? 0) + ($arrayA[$countA] ?? 0) + $deposit;
+            // 判断是否需要进一
             if ($sum >= 2) {
                 array_unshift($arrayC, $sum - 2);
                 $deposit = 1;
@@ -54,7 +61,16 @@ class BinarySystemArraySummation
         echo implode('', $array) . '</br>';
     }
 
+    /**
+     * 输出二进制
+     * @param array $array
+     * @return void
+     */
+    public function binarySystemPut(array $array) {
+        echo base_convert(implode('', $array), 2, 10) . '</br>';
+    }
+
 }
-$BinarySystemArraySummation = new BinarySystemArraySummation;
-$result = base_convert(implode($BinarySystemArraySummation->run()), 2, 10);
+$run = new BinarySystemArraySummation;
+$result = $run->binarySystemPut($run->run());
 echo $result;
